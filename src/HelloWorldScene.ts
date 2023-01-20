@@ -9,19 +9,20 @@ export default class HelloWorldScene extends Phaser.Scene {
 	}
 
 	preload() {
-		this.load.image("conveyor", "public/assets/Conveyor.png");
+		this.load.image("h-conveyor", "public/assets/Horizontal Conveyor.png");
+		this.load.image("v-conveyor", "public/assets/Vertical Conveyor.png");
 		this.load.image('sky', 'assets/sky.png')
 	}
 
 	create() {
 		this.add.image(400,300,'sky')
-		this.conveyor = this.add.tileSprite(30, 30, 60, 100, "conveyor");
+		this.conveyor = this.add.tileSprite(60, 30, 60, 300, "v-conveyor");
     	this.conveyor.setOrigin(0,0);
 	}
 
 	update() {
 		if(this.conveyor){
-			this.conveyor.tilePositionX -= 4;
+			this.conveyor.tilePositionY -= 4;
 		}
 	}
 }
