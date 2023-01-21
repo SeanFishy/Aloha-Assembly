@@ -1,8 +1,9 @@
 import Phaser from 'phaser'
 import HelloWorldScene from './HelloWorldScene'
-
 import Level_One_Scene from './Level_One_Scene'
 import Level_Two_Scene from './Level_Two_Scene'
+
+import ModalScene from './ModalScene'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
