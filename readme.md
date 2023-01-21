@@ -5,7 +5,7 @@ Madison - Title Scene, Scene Navigation <br />
 Allie - Button Functionality, Fruit Graphics <br />
 Aman - Menus, Pop-ups <br />
 
-#Phaser 3 + TypeScript + Vite.js Template
+# Phaser 3 + TypeScript + Vite.js Template
 > Make Phaser 3 games with TypeScript and modern frontend tooling.
 
 ![License](https://img.shields.io/badge/license-MIT-green)
