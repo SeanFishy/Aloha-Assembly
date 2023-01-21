@@ -2,7 +2,7 @@
 Matthew - Level Design, Changing between current fruit <br />
 Sean - Fruit movement along conveyor belts <br />
 Madison - Title Scene, Scene Navigation <br />
-Allie - Button Functionality, Fruit Graphics <br />
+Allie - Button Functionality, Fruit Graphics, Instruction Scene <br />
 Aman - Menus, Pop-ups <br />
 
 # Phaser 3 + TypeScript + Vite.js Template

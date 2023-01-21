@@ -49,8 +49,8 @@ export default class IntroScene extends Phaser.Scene {
             this.instructionbutton?.setAlpha(1);
         });
         this.instructionbutton.on("pointerup",()=>{
-            //start instructions popup
-            // this.scene.start('');
+            this.scene.stop('IntroScene');
+            this.scene.start('instructionsScene');
         });
     }
 
