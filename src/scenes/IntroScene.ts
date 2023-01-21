@@ -1,6 +1,5 @@
 import Phaser from 'phaser'
 
-//checking
 
 export default class IntroScene extends Phaser.Scene {
     private playbutton?: Phaser.GameObjects.Image;
@@ -37,8 +36,7 @@ export default class IntroScene extends Phaser.Scene {
         });
         this.playbutton.on("pointerup",()=>{
             this.scene.stop('IntroScene');
-            //start levelonescene
-            // this.scene.start('');
+            this.scene.start('Level_One_Scene');
         });
         this.instructionbutton = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2+100, 'Instructions').setAlpha(1);
         this.instructionbutton.setScale(.5)
