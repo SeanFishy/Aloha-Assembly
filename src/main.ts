@@ -1,9 +1,11 @@
 import Phaser from 'phaser'
-import HelloWorldScene from './HelloWorldScene'
-import Level_One_Scene from './Level_One_Scene'
-import Level_Two_Scene from './Level_Two_Scene'
 
-import ModalScene from './ModalScene'
+//import HelloWorldScene from './HelloWorldScene'
+import IntroScene from './scenes/IntroScene'
+import HelloWorldScene from './scenes/HelloWorldScene'
+import Level_One_Scene from './scenes/Level_One_Scene'
+import Level_Two_Scene from './scenes/Level_Two_Scene'
+import ModalScene from './scenes/ModalScene'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -16,7 +18,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			gravity: { y: 0 },
 		},
 	},
-	scene: [Level_One_Scene],
+	scene: [IntroScene],
 }
 
 export default new Phaser.Game(config)
