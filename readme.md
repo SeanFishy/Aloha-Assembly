@@ -1,9 +1,9 @@
 # MVP Contributions
 Matthew - Level Design, Changing between current fruit <br />
-Sean - Fruit movement along conveyor belts
-Madison - Title Scene, Scene Navigation
-Allie - Button Functionality, Fruit Graphics 
-Aman - Menus, Pop-ups
+Sean - Fruit movement along conveyor belts <br />
+Madison - Title Scene, Scene Navigation <br />
+Allie - Button Functionality, Fruit Graphics <br />
+Aman - Menus, Pop-ups <br />
 
 #Phaser 3 + TypeScript + Vite.js Template
 > Make Phaser 3 games with TypeScript and modern frontend tooling.
