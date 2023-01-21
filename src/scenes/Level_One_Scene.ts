@@ -23,9 +23,13 @@ export default class Level_One_Scene extends Phaser.Scene {
 	}
 
 	preload() {
-		this.load.image("pineapple", "assets/big_pineapple.png");
-		this.load.image("mango", "assets/big_mango.png");
-		this.load.image("basket", "assets/big_basket.png");
+		this.load.image("pineapple", "assets/pineapple.png");
+		this.load.image("avocado", "assets/avocado.png");
+		this.load.image("lychee", "assets/lychee.png");
+		this.load.image("passionfruit", "assets/passionfruit.png");
+		this.load.image("papaya", "assets/papaya.png");
+		this.load.image("mango", "assets/mango.png");
+		this.load.image("basket", "assets/basket.png");
 		this.load.image("factory", "assets/factory.png");
 		this.load.image("vertical", "assets/vertical_conveyor.png")
 		this.load.image("horizontal", "assets/horizontal_conveyor.png")
