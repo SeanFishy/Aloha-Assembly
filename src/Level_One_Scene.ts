@@ -4,6 +4,7 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 	private pineapple?: Phaser.Physics.Arcade.Sprite
 	private mango?: Phaser.Physics.Arcade.Sprite
+	private currentFruit?: Phaser.Physics.Arcade.Sprite
 
 	private baskets?: Phaser.Physics.Arcade.StaticGroup
 	private ifYellow?: Phaser.GameObjects.Text
@@ -46,12 +47,18 @@ export default class Level_One_Scene extends Phaser.Scene {
 			backgroundColor: 'white'
 		}).setOrigin(0.5)
 
-		this.pineapple= this.physics.add.sprite(400, 250, "pineapple")
 		this.mango = this.physics.add.sprite(500, 350, "mango")
-
+		this.currentFruit = this.pineapple= this.physics.add.sprite(400, 250, "pineapple")
 	}
 
 	update() {
-		
+		var pineapple = this.input.keyboard.addKey('P');
+		var mango = this.input.keyboard.addKey('M');
+		if(pineapple.isDown){
+			this.currentFruit?.setTexture("pineapple")
+		}
+		if(mango.isDown){
+			this.currentFruit?.setTexture("mango")
+		}
 	}
 }
