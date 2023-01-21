@@ -1,5 +1,5 @@
 # MVP Contributions
-Matthew - Level Design, Changing between current fruit
+Matthew - Level Design, Changing between current fruit <br />
 Sean - Fruit movement along conveyor belts
 Madison - Title Scene, Scene Navigation
 Allie - Button Functionality, Fruit Graphics 
