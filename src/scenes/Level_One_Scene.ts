@@ -18,6 +18,8 @@ export default class Level_One_Scene extends Phaser.Scene {
 	private ifYellow?: Phaser.GameObjects.Text
 	private ifNotYellow?: Phaser.GameObjects.Text
 
+	private currentFruitName?: String
+
 	constructor() {
 		super('level-1')
 	}
@@ -64,8 +66,9 @@ export default class Level_One_Scene extends Phaser.Scene {
 			backgroundColor: 'white'
 		}).setOrigin(0.5)
 
-		//this.mango = this.physics.add.sprite(500, 350, "mango")
-		this.fruit = this.physics.add.image(400, 100, "pineapple")
+		this.fruit = this.physics.add.image(400, 100, "mango")
+
+		this.currentFruitName = "mango"
 	}
 
 	update() {
@@ -91,10 +94,25 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 		//Check first if the fruit is over a basket
 		if(this.fruit.x === 150 && this.fruit.y === 550){
-			//This is the correct basket, so this should add to the score
-			return; //Make this modify the score, remove the current fruit, and send a new fruit
+			if(this.currentFruitName === "pineapple"){
+				this.fruit.x = 400;
+				this.fruit.y = 100;
+				this.newFruit();
+			}
+			else{
+				this.fruit.x = 400;
+				this.fruit.y = 350;
+			}
 		} else if(this.fruit.x === 650 && this.fruit.y === 550) {
-			return;
+			if(this.currentFruitName === "mango"){
+				this.fruit.x = 400;
+				this.fruit.y = 100;
+				this.newFruit();
+			}
+			else{
+				this.fruit.x = 400;
+				this.fruit.y = 350;
+			}
 		}
 		//Manually Check which conveyor the fruit is on using it's position
 		if(this.fruit.x === 400 && this.fruit.y < 350){
@@ -109,6 +127,17 @@ export default class Level_One_Scene extends Phaser.Scene {
 			} else {
 				this.fruit.x--;
 			}
+		}
+	}
+
+	newFruit(){
+		if(Math.floor(Math.random() * 2) === 0){
+			this.currentFruitName = "pineapple"
+			this.fruit?.setTexture("pineapple")
+		}
+		else{
+			this.currentFruitName = "mango"
+			this.fruit?.setTexture("mango")
 		}
 	}
 }
