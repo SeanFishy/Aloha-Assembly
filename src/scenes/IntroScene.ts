@@ -36,7 +36,7 @@ export default class IntroScene extends Phaser.Scene {
         });
         this.playbutton.on("pointerup",()=>{
             this.scene.stop('IntroScene');
-            this.scene.start('level-1');
+            this.scene.start('MapScene');
         });
         this.instructionbutton = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2+100, 'Instructions').setAlpha(1);
         this.instructionbutton.setScale(.5)
