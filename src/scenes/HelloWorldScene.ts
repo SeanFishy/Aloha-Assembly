@@ -1,25 +1,3 @@
-<<<<<<< HEAD:src/scenes/HelloWorldScene.ts
-import Phaser from 'phaser'
-
-export default class HelloWorldScene extends Phaser.Scene {
-
-	constructor() {
-		super('hello-world')
-	}
-
-	preload() {
-		
-	}
-
-	create() {
-		
-	}
-
-	update() {
-		
-	}
-}
-=======
 import Phaser from 'phaser'
 
 export default class HelloWorldScene extends Phaser.Scene {
@@ -77,4 +55,3 @@ export default class HelloWorldScene extends Phaser.Scene {
 		}
 	}
 }
->>>>>>> b4f5ca206ce9bd531bc0d5eaa9c9f2263ff739c0:src/HelloWorldScene.ts
