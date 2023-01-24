@@ -20,6 +20,11 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 	private currentFruitName?: String
 
+	private scoreText?: Phaser.GameObjects.Text
+	private score: number = 0
+
+	private finishText?: Phaser.GameObjects.Text
+
 	constructor() {
 		super('level-1')
 	}
@@ -37,6 +42,8 @@ export default class Level_One_Scene extends Phaser.Scene {
 		this.load.image("horizontal", "assets/horizontal_conveyor.png")
 		this.load.image("l-arrow", "public/assets/Arrow Left.png");
 		this.load.image("r-arrow", "public/assets/Arrow Right.png");
+		this.load.image('modal-bg', 'assets/modal.png');
+		this.load.image('close-button', 'assets/close.png');
 	}
 
 	create() {
@@ -62,6 +69,12 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 		this.ifNotYellow = this.add.text(550, 300, 'If Fruit is not 🟡', {
 			fontSize: '18px',
+			color: 'black',
+			backgroundColor: 'white'
+		}).setOrigin(0.5)
+
+		this.scoreText = this.add.text(700, 30, 'Score: '+this.score, {
+			fontSize: '25px',
 			color: 'black',
 			backgroundColor: 'white'
 		}).setOrigin(0.5)
@@ -98,22 +111,27 @@ export default class Level_One_Scene extends Phaser.Scene {
 				this.fruit.x = 400;
 				this.fruit.y = 100;
 				this.newFruit();
+				this.score += 10
 			}
 			else{
 				this.fruit.x = 400;
 				this.fruit.y = 350;
+				this.score -= 5
 			}
 		} else if(this.fruit.x === 650 && this.fruit.y === 550) {
 			if(this.currentFruitName !== "pineapple"){
 				this.fruit.x = 400;
 				this.fruit.y = 100;
 				this.newFruit();
+				this.score += 10
 			}
 			else{
 				this.fruit.x = 400;
 				this.fruit.y = 350;
+				this.score -= 5
 			}
 		}
+		this.scoreText?.setText(`Score: ${this.score}`)
 		//Manually Check which conveyor the fruit is on using it's position
 		if(this.fruit.x === 400 && this.fruit.y < 350){
 			this.fruit.y++;
@@ -127,6 +145,13 @@ export default class Level_One_Scene extends Phaser.Scene {
 			} else {
 				this.fruit.x--;
 			}
+		}
+		if(this.score >= 100 && !this.finishText) {
+			this.finishText = this.add.text(150, 150, 'Level Completed!\n\nLevel 2 Unlocked', {
+				fontSize: '20px',
+				color: 'black',
+				backgroundColor: 'white'
+			}).setOrigin(0.5)
 		}
 	}
 
