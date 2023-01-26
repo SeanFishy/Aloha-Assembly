@@ -29,6 +29,8 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 	private fruitIntro?: Phaser.GameObjects.Image;
 	private closeButton?: Phaser.GameObjects.Image;
+	private openInfo?: Phaser.GameObjects.Image;
+	private infoBox: boolean = true;
 
 	private speed: number = 1
 	private speedText?: Phaser.GameObjects.Text
@@ -119,6 +121,7 @@ export default class Level_One_Scene extends Phaser.Scene {
         this.closeButton.on("pointerup",()=>{
             this.fruitIntro?.destroy()
 			this.closeButton?.destroy()
+			this.infoBox = false
         });
 
 		this.speedText = this.add.text(700, 70, 'Speed: '+this.speed, {
@@ -145,6 +148,9 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 	update() {
 		if(!this.cursors || !this.conv1 || !this.conv2 || !this.conv3 || !this.conv4 || !this.arrow1 || !this.fruit){
+			return
+		}
+		if(this.infoBox){
 			return
 		}
 		if(this.cursors?.left.isDown){
