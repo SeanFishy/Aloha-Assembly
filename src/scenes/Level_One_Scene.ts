@@ -27,6 +27,11 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 	private backButton?: Phaser.GameObjects.Image;
 
+	private fruitIntro?: Phaser.GameObjects.Image;
+	private closeButton?: Phaser.GameObjects.Image;
+
+	private speed: number = 1
+
 	constructor() {
 		super('level-1')
 	}
@@ -46,6 +51,8 @@ export default class Level_One_Scene extends Phaser.Scene {
 		this.load.image("r-arrow", "public/assets/Arrow Right.png");
 		this.load.image('modal-bg', 'assets/modal.png');
 		this.load.image('back-button', 'public/assets/Back.png');
+		this.load.image('close-button', 'public/assets/close.png');
+		this.load.image('fruit-intro', 'assets/emptyDescription.png');
 	}
 
 	create() {
@@ -87,7 +94,6 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 		this.backButton = this.add.image(50,40, 'back-button').setAlpha(1);
         this.backButton.setScale(.25)
-        //Display.Align.In.Center(this.playbutton, this.background);
         this.backButton.setInteractive();
         this.backButton.on("pointerover",() =>{
             this.backButton?.setAlpha(.5);
@@ -98,6 +104,20 @@ export default class Level_One_Scene extends Phaser.Scene {
         this.backButton.on("pointerup",()=>{
             this.scene.stop('level-1');
             this.scene.start('MapScene');
+        });
+		this.fruitIntro = this.add.image(400,300,'fruit-intro')
+		this.closeButton = this.add.image(400,470, 'close-button').setAlpha(1);
+        this.closeButton.setScale(.08)
+        this.closeButton.setInteractive();
+        this.closeButton.on("pointerover",() =>{
+            this.closeButton?.setAlpha(.5);
+        });
+        this.closeButton.on("pointerout", ()=>{
+            this.closeButton?.setAlpha(1);
+        });
+        this.closeButton.on("pointerup",()=>{
+            this.fruitIntro?.destroy()
+			this.closeButton?.destroy()
         });
 	}
 
@@ -113,57 +133,63 @@ export default class Level_One_Scene extends Phaser.Scene {
 			this.arrow1.setTexture('r-arrow');
 			this.currDirection = 0;
 		}
-		this.conv1.tilePositionY -= 1;
-		this.conv3.tilePositionY -= 1;
-		this.conv4.tilePositionY -= 1;
+		this.conv1.tilePositionY -= this.speed;
+		this.conv3.tilePositionY -= this.speed;
+		this.conv4.tilePositionY -= this.speed;
 		if(this.currDirection === 0){
-			this.conv2.tilePositionX -= 1;
+			this.conv2.tilePositionX -= this.speed;
 		} else {
-			this.conv2.tilePositionX += 1;
+			this.conv2.tilePositionX += this.speed;
 		}
 
 		//Check first if the fruit is over a basket
-		if(this.fruit.x === 150 && this.fruit.y === 550){
+		if(this.fruit.x === 150 && this.fruit.y >= 550){
 			if(this.currentFruitName === "pineapple"){
 				this.fruit.x = 400;
 				this.fruit.y = 100;
 				this.newFruit();
-				this.score += 10
+				this.score += 100
 			}
 			else{
 				this.fruit.x = 400;
 				this.fruit.y = 350;
-				this.score -= 5
+				this.score -= 50
 			}
-		} else if(this.fruit.x === 650 && this.fruit.y === 550) {
+		} else if(this.fruit.x === 650 && this.fruit.y >= 550) {
 			if(this.currentFruitName !== "pineapple"){
 				this.fruit.x = 400;
 				this.fruit.y = 100;
 				this.newFruit();
-				this.score += 10
+				this.score += 100
 			}
 			else{
 				this.fruit.x = 400;
 				this.fruit.y = 350;
-				this.score -= 5
+				this.score -= 50
 			}
 		}
 		this.scoreText?.setText(`Score: ${this.score}`)
 		//Manually Check which conveyor the fruit is on using it's position
 		if(this.fruit.x === 400 && this.fruit.y < 350){
-			this.fruit.y++;
-		} else if(this.fruit.x === 150){
-			this.fruit.y++;
-		} else if(this.fruit.x === 650){
-			this.fruit.y++;
+			this.fruit.y += this.speed;
+		} else if(this.fruit.x <= 150){
+			if(this.fruit.x < 150){
+				this.fruit.x = 150
+			}
+			this.fruit.y += this.speed;
+		} else if(this.fruit.x >= 650){
+			if(this.fruit.x > 650){
+				this.fruit.x = 650
+			}
+			this.fruit.y += this.speed;
 		} else {
 			if(this.currDirection === 0){
-				this.fruit.x++;
+				this.fruit.x += this.speed;
 			} else {
-				this.fruit.x--;
+				this.fruit.x -= this.speed;
 			}
 		}
-		if(this.score >= 100 && !this.finishText) {
+		if(this.score >= 1000 && !this.finishText) {
 			this.finishText = this.add.text(150, 150, 'Level Completed!\n\nLevel 2 Unlocked', {
 				fontSize: '20px',
 				color: 'black',
