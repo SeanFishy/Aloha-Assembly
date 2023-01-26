@@ -35,6 +35,8 @@ export default class Level_One_Scene extends Phaser.Scene {
 	private speed: number = 1
 	private speedText?: Phaser.GameObjects.Text
 
+	private aboutButton?: Phaser.GameObjects.Image;
+
 	constructor() {
 		super('level-1')
 	}
@@ -56,6 +58,7 @@ export default class Level_One_Scene extends Phaser.Scene {
 		this.load.image('back-button', 'public/assets/Back.png');
 		this.load.image('close-button', 'public/assets/close.png');
 		this.load.image('fruit-intro', 'assets/emptyDescription.png');
+		this.load.image('about-button', 'assets/aboutButton.png');
 	}
 
 	create() {
@@ -119,8 +122,10 @@ export default class Level_One_Scene extends Phaser.Scene {
             this.closeButton?.setAlpha(1);
         });
         this.closeButton.on("pointerup",()=>{
-            this.fruitIntro?.destroy()
-			this.closeButton?.destroy()
+			if(this.fruitIntro && this.closeButton){
+            	this.fruitIntro.visible = false
+				this.closeButton.visible = false
+			}
 			this.infoBox = false
         });
 
@@ -143,6 +148,22 @@ export default class Level_One_Scene extends Phaser.Scene {
             	this.speed += 1
 			}
 			this.speedText?.setText('Speed: '+this.speed)
+        });
+		this.aboutButton = this.add.image(150,40, 'about-button').setAlpha(1);
+        this.aboutButton.setScale(.3)
+        this.aboutButton.setInteractive();
+        this.aboutButton.on("pointerover",() =>{
+            this.aboutButton?.setAlpha(.5);
+        });
+        this.aboutButton.on("pointerout", ()=>{
+            this.aboutButton?.setAlpha(1);
+        });
+        this.aboutButton.on("pointerup",()=>{
+            if(this.fruitIntro && this.closeButton){
+            	this.fruitIntro.visible = true
+				this.closeButton.visible = true
+			}
+			this.infoBox = true
         });
 	}
 
