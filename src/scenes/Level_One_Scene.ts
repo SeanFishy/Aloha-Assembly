@@ -25,6 +25,8 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 	private finishText?: Phaser.GameObjects.Text
 
+	private backButton?: Phaser.GameObjects.Image;
+
 	constructor() {
 		super('level-1')
 	}
@@ -43,7 +45,7 @@ export default class Level_One_Scene extends Phaser.Scene {
 		this.load.image("l-arrow", "public/assets/Arrow Left.png");
 		this.load.image("r-arrow", "public/assets/Arrow Right.png");
 		this.load.image('modal-bg', 'assets/modal.png');
-		this.load.image('close-button', 'assets/close.png');
+		this.load.image('back-button', 'public/assets/Back.png');
 	}
 
 	create() {
@@ -82,6 +84,21 @@ export default class Level_One_Scene extends Phaser.Scene {
 		this.fruit = this.physics.add.image(400, 100, "mango")
 
 		this.currentFruitName = "mango"
+
+		this.backButton = this.add.image(50,40, 'back-button').setAlpha(1);
+        this.backButton.setScale(.25)
+        //Display.Align.In.Center(this.playbutton, this.background);
+        this.backButton.setInteractive();
+        this.backButton.on("pointerover",() =>{
+            this.backButton?.setAlpha(.5);
+        });
+        this.backButton.on("pointerout", ()=>{
+            this.backButton?.setAlpha(1);
+        });
+        this.backButton.on("pointerup",()=>{
+            this.scene.stop('level-1');
+            this.scene.start('MapScene');
+        });
 	}
 
 	update() {
