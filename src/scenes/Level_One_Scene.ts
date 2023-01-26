@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import MapScene from './mapScene';
 
 export default class Level_One_Scene extends Phaser.Scene {
 
@@ -112,6 +113,7 @@ export default class Level_One_Scene extends Phaser.Scene {
             this.scene.start('MapScene');
         });
 		this.fruitIntro = this.add.image(400,300,'fruit-intro')
+		this.infoBox = true;
 		this.closeButton = this.add.image(400,470, 'close-button').setAlpha(1);
         this.closeButton.setScale(.08)
         this.closeButton.setInteractive();
@@ -248,6 +250,7 @@ export default class Level_One_Scene extends Phaser.Scene {
 				color: 'black',
 				backgroundColor: 'white'
 			}).setOrigin(0.5)
+			MapScene.level1Complete = true;
 		}
 	}
 
