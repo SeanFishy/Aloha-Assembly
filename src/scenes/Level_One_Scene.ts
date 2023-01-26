@@ -30,7 +30,6 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 	private fruitIntro?: Phaser.GameObjects.Image;
 	private closeButton?: Phaser.GameObjects.Image;
-	private openInfo?: Phaser.GameObjects.Image;
 	private infoBox: boolean = true;
 
 	private speed: number = 1
