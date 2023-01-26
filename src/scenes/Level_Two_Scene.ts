@@ -14,7 +14,7 @@ export default class Level_One_Scene extends Phaser.Scene {
 	private ifNotGreen?: Phaser.GameObjects.Text
 
 	constructor() {
-		super('level-1')
+		super('level-2')
 	}
 
 	preload() {
