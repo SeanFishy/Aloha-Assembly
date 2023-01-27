@@ -100,19 +100,20 @@ export default class Level_One_Scene extends Phaser.Scene {
 			backgroundColor: 'white'
 		}).setOrigin(0.5)
 
-		this.ifBerry = this.add.text(355, 200, 'Berry', {
+		this.ifBerry = this.add.text(555, 200, 'Berry', {
 			fontSize: '14px',
 			color: 'black',
 			backgroundColor: 'white'
 		}).setOrigin(0.5)
 
-		this.ifNotBerry = this.add.text(555, 200, 'Not a Berry', {
+		this.ifNotBerry = this.add.text(355, 200, 'Not a Berry', {
 			fontSize: '14px',
 			color: 'black',
 			backgroundColor: 'white'
 		}).setOrigin(0.5)
 
 		this.fruit = this.physics.add.image(450, 150, "pineapple")
+		this.currentFruitName = "pineapple"
 
 		this.scoreText = this.add.text(700, 30, 'Score: '+this.score, {
 			fontSize: '25px',
@@ -250,14 +251,61 @@ export default class Level_One_Scene extends Phaser.Scene {
 			if(this.fruit.x < 100){
 				this.fruit.x = 100;
 			}
-			else if(this.fruit.x > 400){
+			else if(this.fruit.x > 400 && this.fruit.x < 650){
 				this.fruit.x = 400;
 			}
 		}
+
+		//Reset fruit and update score
+		if(this.fruit.y >= 570){
+			if((this.fruit.x == 100 && (this.currentFruitName == "mango" 
+			|| this.currentFruitName == "papaya")) || 
+			this.fruit.x == 400 && (this.currentFruitName == "pineapple" 
+			|| this.currentFruitName == "lychee") || 
+			this.fruit.x == 650 && (this.currentFruitName == "passionfruit" 
+			|| this.currentFruitName == "avocado")){
+				this.fruit.x = 450;
+				this.fruit.y = 100;
+				this.newFruit();
+				this.score += 100;
+			}
+			else if(this.currentFruitName == "mango" 
+			|| this.currentFruitName == "papaya"){
+				if(this.fruit.x == 400){
+					this.fruit.x = 250;
+					this.fruit.y = 450;	
+				}
+				else{
+					this.fruit.x = 450;
+					this.fruit.y = 100;
+				}
+				this.score -= 50;
+			}
+
+			else if(this.currentFruitName == "pineapple" 
+			|| this.currentFruitName == "lychee"){
+				if(this.fruit.x == 100){
+					this.fruit.x = 250;
+					this.fruit.y = 450;	
+				}
+				else{
+					this.fruit.x = 450;
+					this.fruit.y = 100;
+				}
+				this.score -= 50;
+			}
+
+			else{
+				this.fruit.x = 450;
+				this.fruit.y = 100;
+				this.score -= 50;
+			}
+		}
+		this.scoreText?.setText(`Score: ${this.score}`)
 	}
 
 	newFruit(){
-		let newFruitIndex = Math.floor(Math.random() * 4)
+		let newFruitIndex = Math.floor(Math.random() * 6)
 		if(newFruitIndex == 0){
 			this.currentFruitName = "pineapple"
 			this.fruit?.setTexture("pineapple")
@@ -269,6 +317,14 @@ export default class Level_One_Scene extends Phaser.Scene {
 		else if(newFruitIndex == 2){
 			this.currentFruitName = "lychee"
 			this.fruit?.setTexture("lychee")
+		}
+		else if(newFruitIndex == 3){
+			this.currentFruitName = "passionfruit"
+			this.fruit?.setTexture("passionfruit")
+		}
+		else if(newFruitIndex == 4){
+			this.currentFruitName = "papaya"
+			this.fruit?.setTexture("papaya")
 		}
 		else{
 			this.currentFruitName = "avocado"
