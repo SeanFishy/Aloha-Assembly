@@ -1,8 +1,8 @@
 # MVP Contributions
 Matthew - Level Design, Changing between current fruit <br />
 Sean - Conveyor Design and Movement, Fruit Movement, Arrow Key Functionality <br />
-Madison - Title Scene, Scene Navigation <br />
-Allie - Button Functionality, Fruit Graphics, Instruction Scene <br />
+Madison - Title Scene and only intro buttons, Scene Navigation <br />
+Allie - All other Button Functionality, Fruit Graphics, Instruction Scene <br />
 Aman - Menus, Pop-ups <br />
 
 # Phaser 3 + TypeScript + Vite.js Template
