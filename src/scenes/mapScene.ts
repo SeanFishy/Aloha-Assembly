@@ -32,7 +32,7 @@ export default class MapScene extends Phaser.Scene {
         });
         this.level1Button.on("pointerup",()=>{
             this.scene.stop('MapScene');
-            this.scene.start('level-1');
+            this.scene.start('level-1'); //TODO: Change back to level 1
         });
 
         if(MapScene.level1Complete){
