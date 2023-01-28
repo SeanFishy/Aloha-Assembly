@@ -35,6 +35,9 @@ export default class Level_Two_Scene extends Phaser.Scene {
 
 	private fruitIntro?: Phaser.GameObjects.Image;
 	private closeButton?: Phaser.GameObjects.Image;
+	private pauseButton?: Phaser.GameObjects.Image;
+	private resumeButton?: Phaser.GameObjects.Image;
+	
 	private aboutButton?: Phaser.GameObjects.Image;
 	private openInfo?: Phaser.GameObjects.Image;
 	private infoBox: boolean = true;
@@ -57,6 +60,8 @@ export default class Level_Two_Scene extends Phaser.Scene {
 		this.load.image("l-arrow", "public/assets/Arrow Left.png");
 		this.load.image("r-arrow", "public/assets/Arrow Right.png");
 		this.load.image('modal-bg', 'assets/modal.png');
+		this.load.image('pause-button', 'assets/PauseButton.png');
+		this.load.image('resume-button', 'assets/ResumeButton.png');
 		this.load.image('back-button', 'public/assets/Back.png');
 		this.load.image('close-button', 'public/assets/close.png');
 		this.load.image('fruit-intro', 'assets/emptyDescription.png');
@@ -186,6 +191,45 @@ export default class Level_Two_Scene extends Phaser.Scene {
 			}
 			this.infoBox = true
         });
+
+		this.pauseButton = this.add.image(250,35, 'pause-button').setAlpha(1);
+        this.pauseButton.setScale(.3)
+        this.pauseButton.setInteractive();
+        this.pauseButton.on("pointerover",() =>{
+            this.pauseButton?.setAlpha(.5);
+        });
+        this.pauseButton.on("pointerout", ()=>{
+            this.pauseButton?.setAlpha(1);
+        });
+        this.pauseButton.on("pointerup",()=>{
+            if(this.fruitIntro?.visible === false){
+                if(this.pauseButton && this.resumeButton){
+                    this.pauseButton.visible = false;
+                    this.resumeButton.visible = true;
+                }
+                this.infoBox = !this.infoBox;
+            }
+        });
+        this.resumeButton = this.add.image(250,35, 'resume-button').setAlpha(1);
+        this.resumeButton.setScale(0.05)
+        this.resumeButton.setInteractive();
+        this.resumeButton.on("pointerover",() =>{
+            this.resumeButton?.setAlpha(.5);
+        });
+        this.resumeButton.on("pointerout", ()=>{
+            this.resumeButton?.setAlpha(1);
+        });
+        this.resumeButton.on("pointerup",()=>{
+            if(this.fruitIntro?.visible === false){
+                if(this.pauseButton && this.resumeButton){
+                    this.pauseButton.visible = true;
+                    this.resumeButton.visible = false;
+                }
+                this.infoBox = !this.infoBox;
+            }
+        });
+		this.resumeButton.visible = false;
+
 		if(this.openInfo && this.finishText && this.ifBerry && this.ifNotBerry && this.ifNotOrange && this.ifOrange) {}
 	}
 
