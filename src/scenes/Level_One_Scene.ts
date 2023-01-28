@@ -28,6 +28,7 @@ export default class Level_One_Scene extends Phaser.Scene {
 
     private finishText?: Phaser.GameObjects.Text
 
+    private nextButton?: Phaser.GameObjects.Image;
     private backButton?: Phaser.GameObjects.Image;
 
     private fruitIntro?: Phaser.GameObjects.Image;
@@ -74,9 +75,11 @@ export default class Level_One_Scene extends Phaser.Scene {
         this.load.image('resume-button', 'assets/ResumeButton.png');
         this.load.image('red-x', 'public/assets/x.png');
         this.load.image('checkmark', 'public/assets/checkmark.png');
+        this.load.image('next-button', 'assets/next.png')
     }
 
     create() {
+
         this.add.image(400, 300, "factory")
 
         this.cursors = this.input.keyboard.createCursorKeys()
@@ -112,6 +115,21 @@ export default class Level_One_Scene extends Phaser.Scene {
         this.fruit = this.physics.add.image(400, 100, "mango")
 
         this.currentFruitName = "mango"
+
+        this.nextButton = this.add.image(150, 200, 'next-button').setAlpha(0);
+        this.nextButton.setScale(0.2);
+
+        this.nextButton.setInteractive();
+        this.nextButton.on("pointerover",() =>{
+            this.nextButton?.setAlpha(.5);
+        });
+        this.nextButton.on("pointerout", ()=>{
+            this.nextButton?.setAlpha(1);
+        });
+        this.nextButton.on("pointerup",()=>{
+            this.scene.stop('Level_One_Scene');
+            this.scene.start('level-2');
+        });
 
         this.backButton = this.add.image(50,40, 'back-button').setAlpha(1);
         this.backButton.setScale(.25)
@@ -287,6 +305,10 @@ export default class Level_One_Scene extends Phaser.Scene {
 			
         }
         this.scoreText?.setText(`Score: ${this.score}`)
+
+
+
+
         //Manually Check which conveyor the fruit is on using it's position
         if(this.fruit.x === 400 && this.fruit.y < 350){
             this.fruit.y += this.speed;
@@ -313,6 +335,9 @@ export default class Level_One_Scene extends Phaser.Scene {
                 color: 'black',
                 backgroundColor: 'white'
             }).setOrigin(0.5)
+            
+            this.nextButton?.setAlpha(1);
+
             this.correctSound = this.sound.add("correct-sound", {volume: 0.5, loop: false});
             this.correctSound.play();
             MapScene.level1Complete = true;
