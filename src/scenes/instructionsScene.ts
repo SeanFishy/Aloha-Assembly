@@ -51,9 +51,9 @@ export default class IntroScene extends Phaser.Scene {
         });
         
     
-		this.instructText = this.add.text(this.game.canvas.width-695, this.game.canvas.width/3, '  Help your character sort fruit \n  into the correct basket! Press \n  the left and right arrow keys \n   to direct the fruit to the \n   left or right path. Use the \n    if statements provided to \n   help choose the correct path \n           for the fruit.', { 
-			fontSize: '30px', 
-			color: '#999' 
+		this.instructText = this.add.text(this.game.canvas.width-660, this.game.canvas.width/3 -50, '  Help your character sort fruit into the  \n correct basket! Press the left and right  \n arrow keys to direct the fruit to the \n left or right path. Use the if statements \n provided to help choose the correct \n         path for the fruit.', { 
+			fontSize: '32px', 
+			fontFamily: 'Shadows Into Light'
 		})
         
     }
