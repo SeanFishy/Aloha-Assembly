@@ -30,13 +30,15 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 	private fruitIntro?: Phaser.GameObjects.Image;
 	private closeButton?: Phaser.GameObjects.Image;
-	private openInfo?: Phaser.GameObjects.Image;
 	private infoBox: boolean = true;
 
 	private speed: number = 1
 	private speedText?: Phaser.GameObjects.Text
 
 	private aboutButton?: Phaser.GameObjects.Image;
+
+	private pauseButton?: Phaser.GameObjects.Image;
+	private resumeButton?: Phaser.GameObjects.Image;
 
 	private correctSound?: Phaser.Sound.BaseSound;
 
@@ -63,6 +65,8 @@ export default class Level_One_Scene extends Phaser.Scene {
 		this.load.image('fruit-intro', 'assets/emptyDescription.png');
 		this.load.image('about-button', 'assets/aboutButton.png');
 		this.load.audio('correct-sound', "assets/CorrectSound.mp3")
+		this.load.image('pause-button', 'assets/PauseButton.png');
+		this.load.image('resume-button', 'assets/ResumeButton.png');
 	}
 
 	create() {
@@ -131,7 +135,9 @@ export default class Level_One_Scene extends Phaser.Scene {
             	this.fruitIntro.visible = false
 				this.closeButton.visible = false
 			}
-			this.infoBox = false
+			if(this.resumeButton && this.resumeButton.visible === false){
+				this.infoBox = false
+			}
         });
 
 		this.speedText = this.add.text(700, 70, 'Speed: '+this.speed, {
@@ -170,6 +176,44 @@ export default class Level_One_Scene extends Phaser.Scene {
 			}
 			this.infoBox = true
         });
+
+		this.pauseButton = this.add.image(250,35, 'pause-button').setAlpha(1);
+        this.pauseButton.setScale(.3)
+        this.pauseButton.setInteractive();
+        this.pauseButton.on("pointerover",() =>{
+            this.pauseButton?.setAlpha(.5);
+        });
+        this.pauseButton.on("pointerout", ()=>{
+            this.pauseButton?.setAlpha(1);
+        });
+        this.pauseButton.on("pointerup",()=>{
+			if(this.fruitIntro?.visible === false){
+				if(this.pauseButton && this.resumeButton){
+					this.pauseButton.visible = false;
+					this.resumeButton.visible = true;
+				}
+				this.infoBox = !this.infoBox;
+			}
+        });
+		this.resumeButton = this.add.image(250,35, 'resume-button').setAlpha(1);
+        this.resumeButton.setScale(0.05)
+        this.resumeButton.setInteractive();
+        this.resumeButton.on("pointerover",() =>{
+            this.resumeButton?.setAlpha(.5);
+        });
+        this.resumeButton.on("pointerout", ()=>{
+            this.resumeButton?.setAlpha(1);
+        });
+        this.resumeButton.on("pointerup",()=>{
+			if(this.fruitIntro?.visible === false){
+				if(this.pauseButton && this.resumeButton){
+					this.pauseButton.visible = true;
+					this.resumeButton.visible = false;
+				}
+				this.infoBox = !this.infoBox;
+			}
+        });
+		this.resumeButton.visible = false;
 	}
 
 	update() {
