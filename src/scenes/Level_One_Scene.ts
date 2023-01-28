@@ -37,10 +37,9 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 	private aboutButton?: Phaser.GameObjects.Image;
 
+	private correctSound?: Phaser.Sound.BaseSound;
 	private pauseButton?: Phaser.GameObjects.Image;
 	private resumeButton?: Phaser.GameObjects.Image;
-
-	private correctSound?: Phaser.Sound.BaseSound;
 
 	constructor() {
 		super('level-1')
