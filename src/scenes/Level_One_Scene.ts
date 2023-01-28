@@ -38,6 +38,8 @@ export default class Level_One_Scene extends Phaser.Scene {
 
 	private aboutButton?: Phaser.GameObjects.Image;
 
+	private correctSound?: Phaser.Sound.BaseSound;
+
 	constructor() {
 		super('level-1')
 	}
@@ -60,6 +62,7 @@ export default class Level_One_Scene extends Phaser.Scene {
 		this.load.image('close-button', 'public/assets/close.png');
 		this.load.image('fruit-intro', 'assets/emptyDescription.png');
 		this.load.image('about-button', 'assets/aboutButton.png');
+		this.load.audio('correct-sound', "assets/CorrectSound.mp3")
 	}
 
 	create() {
@@ -250,6 +253,8 @@ export default class Level_One_Scene extends Phaser.Scene {
 				color: 'black',
 				backgroundColor: 'white'
 			}).setOrigin(0.5)
+			this.correctSound = this.sound.add("correct-sound", {volume: 0.5, loop: false});
+			this.correctSound.play();
 			MapScene.level1Complete = true;
 		}
 	}

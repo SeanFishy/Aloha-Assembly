@@ -56,10 +56,6 @@ export default class IntroScene extends Phaser.Scene {
 			color: '#999' 
 		})
         
-        
-
-        
-
     }
 
 }
