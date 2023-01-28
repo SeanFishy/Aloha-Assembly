@@ -57,6 +57,7 @@ export default class IntroScene extends Phaser.Scene {
             this.scene.stop('IntroScene');
             this.scene.start('instructionsScene');
         });
+        if(this.title){}
     }
 
 }

@@ -63,6 +63,7 @@ export default class MapScene extends Phaser.Scene {
             this.scene.stop('MapScene');
             this.scene.start('IntroScene');
         });
+        if(this.background){}
     }
 
 }

@@ -20,9 +20,6 @@ export default class Level_One_Scene extends Phaser.Scene {
 	private scoreText?: Phaser.GameObjects.Text
 	private score: number = 0
 
-	private pineapple?: Phaser.Physics.Arcade.Sprite
-	private mango?: Phaser.Physics.Arcade.Sprite
-    private avocado?: Phaser.Physics.Arcade.Sprite
 	private fruit?: Phaser.Physics.Arcade.Image
 	private currentFruitName?: String
 
@@ -189,6 +186,7 @@ export default class Level_One_Scene extends Phaser.Scene {
 			}
 			this.infoBox = true
         });
+		if(this.openInfo && this.finishText && this.ifBerry && this.ifNotBerry && this.ifNotOrange && this.ifOrange){}
 	}
 
 	update() {
