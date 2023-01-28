@@ -7,6 +7,7 @@ export default class IntroScene extends Phaser.Scene {
     private platforms?: Phaser.Physics.Arcade.StaticGroup
     private title?: Phaser.GameObjects.Image;
     private instructText?: Phaser.GameObjects.Text
+    private audio?: Phaser.Sound.BaseSound;
 
 
     constructor() {
@@ -18,12 +19,16 @@ export default class IntroScene extends Phaser.Scene {
 	    this.load.image('BackButton','assets/Back.png')
         this.load.image('title','assets/Title.png')
         this.load.image('ground', 'assets/BlackBox.png');
+        this.load.audio('IntroSong', "assets/IntroSong.mp3")
 	}
 
     create() {
 		this.background = this.add.image(400,300,'BackgroundImage')
+        this.audio = this.sound.add("IntroSong", {volume: 0.5, loop: true});
+        this.audio?.play();
         this.background.setAlpha(.5)
         this.title = this.add.image(400,300,'title')
+        
     //code from LMNTor for creating buttons
     //I added the scale for the images and changed the opacity
 
@@ -47,6 +52,7 @@ export default class IntroScene extends Phaser.Scene {
         });
         this.backbutton.on("pointerup",()=>{
             this.scene.stop('instructionsScene');
+            this.audio?.stop();
             this.scene.start('IntroScene');
         });
         
