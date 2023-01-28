@@ -213,6 +213,7 @@ export default class Level_One_Scene extends Phaser.Scene {
 			}
         });
 		this.resumeButton.visible = false;
+		if(this.pinappleBasket && this.mangoBasket && this.ifNotYellow && this.ifYellow){}
 	}
 
 	update() {

@@ -55,7 +55,7 @@ export default class IntroScene extends Phaser.Scene {
 			fontSize: '30px', 
 			color: '#999' 
 		})
-        
+        if(this.instructText && this.title) {}
     }
 
 }
