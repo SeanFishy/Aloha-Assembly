@@ -220,8 +220,9 @@ export default class Level_One_Scene extends Phaser.Scene {
                 this.infoBox = !this.infoBox;
             }
         });
-        this.resumeButton.visible = false;          
-    }
+		this.resumeButton.visible = false;
+		if(this.pinappleBasket && this.mangoBasket && this.ifNotYellow && this.ifYellow){}
+	}
 
     async update() {
         this.checkmark = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, "checkmark").setScale(0.5).setAlpha(0)

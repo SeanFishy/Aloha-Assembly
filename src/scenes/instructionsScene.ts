@@ -61,7 +61,7 @@ export default class IntroScene extends Phaser.Scene {
 			fontSize: '32px', 
 			fontFamily: 'Shadows Into Light'
 		})
-        
+        if(this.instructText && this.title) {}
     }
 
 }
