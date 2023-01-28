@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 
-export default class Level_One_Scene extends Phaser.Scene {
+export default class Level_Two_Scene extends Phaser.Scene {
 
 	private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
 	private conv_vertical1?: Phaser.GameObjects.TileSprite;
