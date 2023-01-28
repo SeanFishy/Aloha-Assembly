@@ -36,7 +36,7 @@ export default class IntroScene extends Phaser.Scene {
             .refreshBody()
 
         this.backbutton = this.add.image(this.game.canvas.width/2, 5*this.game.canvas.height/6+50, 'BackButton').setAlpha(1);
-        this.backbutton.setScale(.10)
+        this.backbutton.setScale(.30)
         //Display.Align.In.Center(this.playbutton, this.background);
         this.backbutton.setInteractive();
         this.backbutton.on("pointerover",() =>{
