@@ -25,7 +25,7 @@ create() {
     this.title = this.add.image(400,300,'title')
     
     this.replayButton = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, 'replayButton').setAlpha(1);
-    this.replayButton.setScale(.25)
+    this.replayButton.setScale(.50)
     this.replayButton.setInteractive();
     this.replayButton.on("pointerover",() =>{
         this.replayButton?.setAlpha(.5);
