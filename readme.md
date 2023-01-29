@@ -1,7 +1,7 @@
 # MVP Contributions
 Matthew - Level Design, Changing between current fruit <br />
 Sean - Conveyor Design and Movement, Fruit Movement, Arrow Key Functionality <br />
-Madison - Title Scene and intro buttons and images, Audio, Text, Scene Navigation <br />
+Madison - Title Scene buttons and images, Audio, Text, completion scene <br />
 Allie - Button Functionality, Fruit Graphics, Instruction Scene <br />
 Aman - Menus, Pop-ups <br />
 
