@@ -32,6 +32,7 @@ export default class Level_Two_Scene extends Phaser.Scene {
 	private finishText?: Phaser.GameObjects.Text
 
 	private backButton?: Phaser.GameObjects.Image;
+	private nextButton?: Phaser.GameObjects.Image;
 
 	private fruitIntro?: Phaser.GameObjects.Image;
 	private closeButton?: Phaser.GameObjects.Image;
@@ -41,6 +42,9 @@ export default class Level_Two_Scene extends Phaser.Scene {
 	private aboutButton?: Phaser.GameObjects.Image;
 	private openInfo?: Phaser.GameObjects.Image;
 	private infoBox: boolean = true;
+
+	private CompletionText?: Phaser.GameObjects.Text
+	private correctSound?: Phaser.Sound.BaseSound;
 
 	constructor() {
 		super('level-2')
@@ -66,6 +70,8 @@ export default class Level_Two_Scene extends Phaser.Scene {
 		this.load.image('close-button', 'public/assets/close.png');
 		this.load.image('fruit-intro', 'assets/emptyDescription.png');
 		this.load.image('about-button', 'assets/aboutButton.png');
+		this.load.image('next-button', 'assets/next.png')
+		this.load.audio('correct-sound', "assets/CorrectSound.mp3")
 	}
 
 	create() {
@@ -210,6 +216,21 @@ export default class Level_Two_Scene extends Phaser.Scene {
                 this.infoBox = !this.infoBox;
             }
         });
+		this.nextButton = this.add.image(150, 200, 'next-button').setAlpha(0);
+        this.nextButton.setScale(0.2);
+
+        this.nextButton.setInteractive();
+        this.nextButton.on("pointerover",() =>{
+            this.nextButton?.setAlpha(.5);
+        });
+        this.nextButton.on("pointerout", ()=>{
+            this.nextButton?.setAlpha(1);
+        });
+        this.nextButton.on("pointerup",()=>{
+            this.scene.stop('level-2');
+            this.scene.start('CompletionScene');
+        });
+		
         this.resumeButton = this.add.image(250,35, 'resume-button').setAlpha(1);
         this.resumeButton.setScale(0.05)
         this.resumeButton.setInteractive();
@@ -344,6 +365,18 @@ export default class Level_Two_Scene extends Phaser.Scene {
 			}
 		}
 		this.scoreText?.setText(`Score: ${this.score}`)
+		if(this.score >= 1000 && !this.CompletionText) {
+            this.CompletionText = this.add.text(150, 150, 'Level Completed!', {
+                fontSize: '20px',
+                color: 'black',
+                backgroundColor: 'white'
+            }).setOrigin(0.5)
+			
+			this.nextButton?.setAlpha(1);
+
+            this.correctSound = this.sound.add("correct-sound", {volume: 0.5, loop: false});
+            this.correctSound.play();
+		}
 	}
 
 	newFruit(){
