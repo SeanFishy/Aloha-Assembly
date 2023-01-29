@@ -239,13 +239,14 @@ export default class Level_One_Scene extends Phaser.Scene {
             }
         });
 		this.resumeButton.visible = false;
+
+        this.checkmark = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, "checkmark").setScale(0.5).setAlpha(0)
+		this.redx = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, "red-x").setScale(.5).setAlpha(0)  
+
 		if(this.pinappleBasket && this.mangoBasket && this.ifNotYellow && this.ifYellow){}
 	}
 
-    async update() {
-        this.checkmark = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, "checkmark").setScale(0.5).setAlpha(0)
-		this.redx = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, "red-x").setScale(.5).setAlpha(0)   
-     
+    async update() { 
 		if(!this.cursors || !this.conv1 || !this.conv2 || !this.conv3 || !this.conv4 || !this.arrow1 || !this.fruit){
             return
         }
@@ -271,14 +272,14 @@ export default class Level_One_Scene extends Phaser.Scene {
 		//Check first if the fruit is over a basket
         if(this.fruit.x === 150 && this.fruit.y >= 550){
             if(this.currentFruitName === "pineapple"){
-				this.checkmark = this.checkmark.setAlpha(1)
+				this.checkmark?.setAlpha(1)
                 this.fruit.x = 400;
                 this.fruit.y = 100;
                 this.newFruit();
                 this.score += 100
 			}
             else{
-				this.redx = this.redx.setAlpha(1)
+				this.redx?.setAlpha(1)
                 this.fruit.x = 400;
                 this.fruit.y = 350;
                 if(this.score > 0){
@@ -287,14 +288,14 @@ export default class Level_One_Scene extends Phaser.Scene {
             }
         } else if(this.fruit.x === 650 && this.fruit.y >= 550) {
             if(this.currentFruitName !== "pineapple"){
-				this.checkmark = this.checkmark.setAlpha(1)
+				this.checkmark?.setAlpha(1)
                 this.fruit.x = 400;
                 this.fruit.y = 100;
                 this.newFruit();
                 this.score += 100
             }
             else{
-                this.redx = this.redx.setAlpha(1)
+                this.redx?.setAlpha(1)
                 this.fruit.x = 400;
                 this.fruit.y = 350;
                 if(this.score > 0){
@@ -344,8 +345,8 @@ export default class Level_One_Scene extends Phaser.Scene {
         }
 		const sleep = (ms: number | undefined) => new Promise(r => setTimeout(r, ms))
 		await sleep(3000)
-		this.checkmark = this.checkmark.setAlpha(0)
-		this.redx = this.redx.setAlpha(0)
+		this.checkmark?.setAlpha(0)
+		this.redx?.setAlpha(0)
     }
 
     newFruit(){
