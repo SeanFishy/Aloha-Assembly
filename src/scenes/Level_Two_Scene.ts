@@ -167,7 +167,9 @@ export default class Level_Two_Scene extends Phaser.Scene {
             	this.fruitIntro.visible = false
 				this.closeButton.visible = false
 			}
-			this.infoBox = false
+			if(this.resumeButton && this.resumeButton.visible === false){
+                this.infoBox = false
+            }
         });
 
 		this.speedText = this.add.text(700, 70, 'Speed: '+this.speed, {
