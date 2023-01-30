@@ -91,6 +91,11 @@ export default class Level_Two_Scene extends Phaser.Scene {
 		this.arrow1 = this.add.image(450, 300,'r-arrow');
 		this.arrow2 = this.add.image(250, 500,'r-arrow')
 
+		if(this.currDirection === 1){
+            this.arrow1.setTexture('l-arrow');
+			this.arrow2.setTexture('l-arrow');
+        }
+
 		this.baskets = this.physics.add.staticGroup()
 		this.baskets.create(100, 550, "basket")
 		this.baskets.create(400, 550, "basket")
