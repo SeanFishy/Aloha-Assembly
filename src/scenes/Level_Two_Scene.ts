@@ -68,7 +68,7 @@ export default class Level_Two_Scene extends Phaser.Scene {
 		this.load.image('resume-button', 'assets/ResumeButton.png');
 		this.load.image('back-button', 'public/assets/Back.png');
 		this.load.image('close-button', 'public/assets/close.png');
-		this.load.image('fruit-intro', 'assets/emptyDescription.png');
+		this.load.image('fruit-intro2', 'assets/Description_2.png');
 		this.load.image('about-button', 'assets/aboutButton.png');
 		this.load.image('next-button', 'assets/next.png')
 		this.load.audio('correct-sound', "assets/CorrectSound.mp3")
@@ -142,7 +142,7 @@ export default class Level_Two_Scene extends Phaser.Scene {
             this.scene.stop('level-1');
             this.scene.start('MapScene');
         });
-		this.fruitIntro = this.add.image(400,300,'fruit-intro')
+		this.fruitIntro = this.add.image(400,300,'fruit-intro2')
 		this.infoBox = true;
 		this.closeButton = this.add.image(400,470, 'close-button').setAlpha(1);
         this.closeButton.setScale(.08)
