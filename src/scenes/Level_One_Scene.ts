@@ -86,6 +86,10 @@ export default class Level_One_Scene extends Phaser.Scene {
         
         this.arrow1 = this.add.image(400,400,'r-arrow')
 
+        if(this.currDirection === 1){
+            this.arrow1.setTexture('l-arrow');
+        }
+
         this.conv1 = this.add.tileSprite(400, 100, 60, 500, "vertical");
         this.conv2 = this.add.tileSprite(400, 350, 500, 60, "horizontal")
         this.conv3 = this.add.tileSprite(150, 570, 60, 500, "vertical")
@@ -127,6 +131,7 @@ export default class Level_One_Scene extends Phaser.Scene {
             this.nextButton?.setAlpha(1);
         });
         this.nextButton.on("pointerup",()=>{
+            this.finishText = undefined
             this.scene.stop('Level_One_Scene');
             this.scene.start('level-2');
         });
@@ -141,6 +146,7 @@ export default class Level_One_Scene extends Phaser.Scene {
             this.backButton?.setAlpha(1);
         });
         this.backButton.on("pointerup",()=>{
+            this.finishText = undefined
             this.scene.stop('level-1');
             this.scene.start('MapScene');
         });

@@ -28,6 +28,8 @@ export default class Level_Two_Scene extends Phaser.Scene {
 	private ifNotBerry?: Phaser.GameObjects.Text
 	private ifOrange?: Phaser.GameObjects.Text
 	private ifNotOrange?: Phaser.GameObjects.Text
+    private redx?: Phaser.GameObjects.Image;
+    private checkmark?: Phaser.GameObjects.Image;
 
 	private finishText?: Phaser.GameObjects.Text
 
@@ -72,6 +74,8 @@ export default class Level_Two_Scene extends Phaser.Scene {
 		this.load.image('about-button', 'assets/aboutButton.png');
 		this.load.image('next-button', 'assets/next.png')
 		this.load.audio('correct-sound', "assets/CorrectSound.mp3")
+        this.load.image('red-x', 'public/assets/x.png');
+        this.load.image('checkmark', 'public/assets/checkmark.png');
 	}
 
 	create() {
@@ -90,6 +94,11 @@ export default class Level_Two_Scene extends Phaser.Scene {
 		this.cursors = this.input.keyboard.createCursorKeys()
 		this.arrow1 = this.add.image(450, 300,'r-arrow');
 		this.arrow2 = this.add.image(250, 500,'r-arrow')
+
+		if(this.currDirection === 1){
+            this.arrow1.setTexture('l-arrow');
+			this.arrow2.setTexture('l-arrow');
+        }
 
 		this.baskets = this.physics.add.staticGroup()
 		this.baskets.create(100, 550, "basket")
@@ -251,10 +260,13 @@ export default class Level_Two_Scene extends Phaser.Scene {
         });
 		this.resumeButton.visible = false;
 
+		this.checkmark = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, "checkmark").setScale(0.5).setAlpha(0)
+		this.redx = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2, "red-x").setScale(.5).setAlpha(0)  
+
 		if(this.openInfo && this.finishText && this.ifBerry && this.ifNotBerry && this.ifNotOrange && this.ifOrange) {}
 	}
 
-	update() {
+	async update() {
 		if(this.infoBox){
 			return
 		}
@@ -327,6 +339,7 @@ export default class Level_Two_Scene extends Phaser.Scene {
 			|| this.currentFruitName == "lychee") || 
 			this.fruit.x == 650 && (this.currentFruitName == "passionfruit" 
 			|| this.currentFruitName == "avocado")){
+				this.checkmark?.setAlpha(1)
 				this.fruit.x = 450;
 				this.fruit.y = 100;
 				this.newFruit();
@@ -342,6 +355,7 @@ export default class Level_Two_Scene extends Phaser.Scene {
 					this.fruit.x = 450;
 					this.fruit.y = 100;
 				}
+				this.redx?.setAlpha(1)
 				this.score -= 50;
 			}
 
@@ -355,14 +369,19 @@ export default class Level_Two_Scene extends Phaser.Scene {
 					this.fruit.x = 450;
 					this.fruit.y = 100;
 				}
+				this.redx?.setAlpha(1)
 				this.score -= 50;
 			}
 
 			else{
 				this.fruit.x = 450;
 				this.fruit.y = 100;
+				this.redx?.setAlpha(1)
 				this.score -= 50;
 			}
+		}
+		if(this.score < 0){
+			this.score = 0;
 		}
 		this.scoreText?.setText(`Score: ${this.score}`)
 		if(this.score >= 1000 && !this.CompletionText) {
@@ -377,6 +396,10 @@ export default class Level_Two_Scene extends Phaser.Scene {
             this.correctSound = this.sound.add("correct-sound", {volume: 0.5, loop: false});
             this.correctSound.play();
 		}
+		const sleep = (ms: number | undefined) => new Promise(r => setTimeout(r, ms))
+		await sleep(3000)
+		this.checkmark?.setAlpha(0)
+		this.redx?.setAlpha(0)
 	}
 
 	newFruit(){
