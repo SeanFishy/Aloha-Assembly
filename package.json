@@ -3,9 +3,12 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
+	"homepage": "https://seanfishy.github.io/Aloha-Assembly/",
 	"scripts": {
 		"start": "vite",
 		"build": "tsc && vite build",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist",
 		"preview": "vite preview"
 	},
 	"devDependencies": {

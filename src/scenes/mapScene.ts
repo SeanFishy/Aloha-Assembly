@@ -16,7 +16,7 @@ export default class MapScene extends Phaser.Scene {
     preload() {
 	    this.load.image('MapImage', 'assets/hawaiiPixelMap.jpg')
 	    this.load.image('LevelButton','assets/levelButton.png')
-		this.load.image('back-button', 'public/assets/Back.png');
+		this.load.image('back-button', 'assets/Back.png');
 	}
 
     create() {
