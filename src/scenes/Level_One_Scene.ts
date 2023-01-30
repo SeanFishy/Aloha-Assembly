@@ -63,18 +63,18 @@ export default class Level_One_Scene extends Phaser.Scene {
         this.load.image("factory", "assets/factory.png");
         this.load.image("vertical", "assets/vertical_conveyor.png")
         this.load.image("horizontal", "assets/horizontal_conveyor.png")
-        this.load.image("l-arrow", "public/assets/Arrow Left.png");
-        this.load.image("r-arrow", "public/assets/Arrow Right.png");
+        this.load.image("l-arrow", "assets/Arrow Left.png");
+        this.load.image("r-arrow", "assets/Arrow Right.png");
         this.load.image('modal-bg', 'assets/modal.png');
-        this.load.image('back-button', 'public/assets/Back.png');
-        this.load.image('close-button', 'public/assets/close.png');
+        this.load.image('back-button', 'assets/Back.png');
+        this.load.image('close-button', 'assets/close.png');
         this.load.image('fruit-intro', 'assets/Description_1.png');
         this.load.image('about-button', 'assets/aboutButton.png');
         this.load.audio('correct-sound', "assets/CorrectSound.mp3")
         this.load.image('pause-button', 'assets/PauseButton.png');
         this.load.image('resume-button', 'assets/ResumeButton.png');
-        this.load.image('red-x', 'public/assets/x.png');
-        this.load.image('checkmark', 'public/assets/checkmark.png');
+        this.load.image('red-x', 'assets/x.png');
+        this.load.image('checkmark', 'assets/checkmark.png');
         this.load.image('next-button', 'assets/next.png')
     }
 
