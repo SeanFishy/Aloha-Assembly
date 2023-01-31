@@ -6,7 +6,7 @@ export default class IntroScene extends Phaser.Scene {
     private background?: Phaser.GameObjects.Image;
     private instructionbutton?: Phaser.GameObjects.Image;
     private title?: Phaser.GameObjects.Image;
-    private audio?: Phaser.Sound.BaseSound;
+    //private audio?: Phaser.Sound.BaseSound;
 
     constructor() {
     	super('IntroScene')
