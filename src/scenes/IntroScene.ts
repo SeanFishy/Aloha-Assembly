@@ -17,12 +17,12 @@ export default class IntroScene extends Phaser.Scene {
 	    this.load.image('StartButton','assets/Start.png')
         this.load.image('Instructions','assets/InstructionButton.png')
         this.load.image('title','assets/Title.png')
-        this.load.audio('IntroSong', "assets/IntroSong.mp3")
+        //this.load.audio('IntroSong', "assets/IntroSong.mp3")
 	}
 
     create() {
-        this.audio = this.sound.add("IntroSong", {volume: 0.5, loop: true});
-        this.audio.play();
+        //this.audio = this.sound.add("IntroSong", {volume: 0.5, loop: true});
+        //this.audio.play();
 		this.background = this.add.image(400,300,'BackgroundImage')
         this.background.setAlpha(.5)
         this.title = this.add.image(400,300,'title')
@@ -40,7 +40,7 @@ export default class IntroScene extends Phaser.Scene {
         });
         this.playbutton.on("pointerup",()=>{
             this.scene.stop('IntroScene');
-            this.audio?.stop()
+            //this.audio?.stop()
             this.scene.start('MapScene');
         });
         this.instructionbutton = this.add.image(this.game.canvas.width/2, this.game.canvas.height/2+100, 'Instructions').setAlpha(1);
@@ -55,7 +55,7 @@ export default class IntroScene extends Phaser.Scene {
         });
         this.instructionbutton.on("pointerup",()=>{
             this.scene.stop('IntroScene');
-            this.audio?.stop()
+            //this.audio?.stop()
             this.scene.start('instructionsScene');
         });
         if(this.title){}
